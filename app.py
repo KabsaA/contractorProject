@@ -1,0 +1,16 @@
+from flask import Flask, escape, request, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    #name = request.args.get("name", "World")
+    return render_template('home.html')
+
+@app.route('/cart')
+def cart():
+    return render_template("cart.html")
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
