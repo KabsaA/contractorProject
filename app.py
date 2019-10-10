@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import os
 app = Flask(__name__)
 
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/papernoms')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Kabsa')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 items = db.inventory
@@ -19,7 +19,7 @@ items.insert_many([
     'name' : 'Shirt',
     'title' : 'P!ATD T Shirt',
     'content' : '',
-    'price' : 15
+    'price' :
     },
     {
     'name' : 'Pants',
@@ -57,8 +57,8 @@ def inventory_submit():
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('category'),
-        'image': request.form.get('image')
+        'category': request.form.get('title'),
+        'image': request.form.get('content')
     }
 
     item_id = inventory.insert_one(item).inserted_id
