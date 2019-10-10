@@ -1,7 +1,7 @@
 autopep8==1.4.4
 Flask==1.1.1
 Flask-PyMongo==2.3.0
-gunicorn==0.14.2
+gunicorn==0.14.3
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 pycodestyle==2.5.0
