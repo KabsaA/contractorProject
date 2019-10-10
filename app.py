@@ -19,7 +19,7 @@ items.insert_many([
     'name' : 'Shirt',
     'title' : 'P!ATD T Shirt',
     'content' : '',
-    'price' :
+    'price' : 4
     },
     {
     'name' : 'Pants',
@@ -37,7 +37,7 @@ def cart():
 def home():
     """Show all inventory."""
     # This will display all inventory by looping through the database
-    return 'home.html', items=items.find())
+    return render_template('home.html', items=items.find())
 
 @app.route('/cart')
 def show_cart():
