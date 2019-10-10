@@ -1,7 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <h1> Home Page! </h1>
-</html>
+{% extends "template.html" %}
+
+{% block content %}
+
+    {%for item in items %}
+      <h1> {{ item.name }} </h1>
+      <p> Item: {{ item.title }} Price: {{ item.price }} </p>
+      <p> {{ item.content }} </p>
+    {% endfor %}
+    {% for i in item %}
+        <img src= {{ url_for('static', filename='uploads/') }} />
+    {% endfor %}
+
+{% endblock %}
