@@ -1,7 +1,9 @@
 autopep8==1.4.4
+Click==7.0
 Flask==1.1.1
 Flask-PyMongo==2.3.0
-gunicorn>=19.5.0
+gunicorn==19.9.0
+itsdangerous==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 pycodestyle==2.5.0
