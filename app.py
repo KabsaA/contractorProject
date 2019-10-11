@@ -4,7 +4,6 @@ from bson.objectid import ObjectId
 import os
 
 
-
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/db')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
