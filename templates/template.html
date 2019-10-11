@@ -1,23 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta charset='utf-8'>
+      <title>Contractor Proj</title>
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="template.css">
-    {% if title %}
-    <title> Contractor Store - {{title}} </title>
-    {% else %}
-    <title> Contractor Store </title>
-    {% endif %}
+      <link rel='stylesheet' href='../static/style.css'>
   </head>
-  <body>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
 
+  <body>
+
+      <h1>BUY YOUR FAVORITE BAND TEES</h1>
+      <br>
+      
+      <div class='container'>
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
   </body>
 </html>

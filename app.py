@@ -16,16 +16,22 @@ cart.drop()
 
 items.insert_many([
     {
-    'name' : 'Shirt',
-    'title' : 'P!ATD T Shirt',
-    'content' : '',
-    'price' : 4
+    'name' : 'P!ATD T SHIRT',
+    'title' : 'Mens T Shirt',
+    'content' : 'static/images/patd.jpg',
+    'price' : 25
     },
     {
-    'name' : 'Pants',
-    'title' : 'Swe Pants',
-    'content' : '',
+    'name' : 'FALL OUT BOY',
+    'title' : 'Womens T Shirt',
+    'content' : 'static/images/fob.jpg',
     'price' : 35
+    },
+    {
+    'name' : '21 PILOTS',
+    'title' : 'T Shirt',
+    'content' : 'static/images/21pilots.jpg',
+    'price' : 30
     }
 ])
 
@@ -46,48 +52,48 @@ def show_cart():
 
     return render_template('cart.html', cart=carts)
 
-@app.route('/inventory/add')
+@app.route('/items/add')
 def item_add():
-    title = "Add Item"
-    return render_template('item_add.html', title=title, inventory={})
+    title = "add item to cart"
+    return render_template('cart.html', title=title, items={})
 
-@app.route('/inventory', methods=['POST'])
-def inventory_submit():
+@app.route('/add', methods=['POST'])
+def add_item():
     '''Submit new item to inventory'''
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('title'),
-        'image': request.form.get('content')
+        'title': request.form.get('title'),
+        'content': request.form.get('content')
     }
 
-    item_id = inventory.insert_one(item).inserted_id
-    return redirect(url_for('item_show', item_id=item_id))
+    item_id = items.insert_one(item).inserted_id
+    return redirect(url_for('show_cart', item_id=item_id))
 
-@app.route('/inventory/<item_id>')
+@app.route('/items/<item_id>')
 def item_show(item_id):
     '''Show single item'''
-    item = inventory.find_one({'_id': ObjectId(item_id)})
+    item = items.find_one({'_id': ObjectId(item_id)})
     return render_template('item.html', item=item)
 
-@app.route('/inventory/<item_id>/edit')
+@app.route('/items/<item_id>/edit')
 def item_edit(item_id):
     '''Show edit form for an item'''
     title = "Edit Item"
-    item = inventory.find_one({'_id': ObjectId(item_id)})
+    item = items.find_one({'_id': ObjectId(item_id)})
     return render_template('item_edit.html', title=title, item=item)
 
-@app.route('/inventory/<item_id>', methods=['POST'])
+@app.route('/items/<item_id>', methods=['POST'])
 def item_update(item_id):
     '''Submit an edited item'''
     updated_item = {
         'name': request.form.get('name'),
         'price': request.form.get('price'),
-        'category': request.form.get('category'),
-        'image': request.form.get('image')
+        'title': request.form.get('title'),
+        'content': request.form.get('content')
     }
 
-    inventory.update_one(
+    items.update_one(
         {'_id': ObjectId(item_id)},
         {'$set': updated_item})
 
@@ -96,20 +102,19 @@ def item_update(item_id):
 @app.route('/inventory/<item_id>/delete', methods=['POST'])
 def item_delete(item_id):
     '''Delete item'''
-    inventory.delete_one({'_id': ObjectId(item_id)})
+    items.delete_one({'_id': ObjectId(item_id)})
 
-    return redirect(url_for('show_admin'))
 
-@app.route('/cart', methods=['POST'])
+@app.route('/cart/<item_id>/', methods=['POST'])
 def add_to_cart():
     '''Submit new item to cart'''
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('category')
+        'title': request.form.get('title')
     }
 
-    add_item = cart.insert_one(item).inserted_id
+    add_item = items.insert_one(item).inserted_id
     return redirect(url_for('show_cart', add_item=add_item))
 
 @app.route('/cart/<item_id>/delete', methods=['POST'])

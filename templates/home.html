@@ -1,14 +1,17 @@
 {% extends "template.html" %}
 
 {% block content %}
+<!DOCTYPE html>
 
     {%for item in items %}
-      <h1> {{ item.name }} </h1>
-      <p> Item: {{ item.title }} Price: {{ item.price }} </p>
-      <p> {{ item.content }} </p>
-    {% endfor %}
-    {% for i in item %}
-        <img src= {{ url_for('static', filename='uploads/') }} />
-    {% endfor %}
+    <h1 style="color:green">Item: {{ item.title }}</h1><br />
+    <img src="/{{ item.content }}" width="300px" height="400px"><br />
+                       <h3 style="color:blue;">{{ item.name }}</h3> <br />
+                       <p>$ {{ item.price }} </p>
+                       <form method="POST" action="/add">
+                           <button type="submit">add item to cart</button>
+                       </form>
 
+
+{% endfor %}
 {% endblock %}

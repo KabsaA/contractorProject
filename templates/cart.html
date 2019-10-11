@@ -1,5 +1,25 @@
 {% extends "template.html" %}
 
+
+
 {% block content %}
-    <h1> Checkout </h1>
-{% endblock content %}
+<div>
+    {% if num == 0 %}
+        <h2>Nothing in cart</h2>
+    {% endif %}
+
+    {% for item in items %}
+    <div>
+        <h2>{{ item.name }}</h2>
+        <h3>{{ item.description }}</h3>
+        <img src={{ item.content }}>
+        <p>
+            <form method='POST' action='/items/{{ item._id }}'>
+                <input>
+                <button type='submit'>delete item</button>
+            </form>
+        <p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
