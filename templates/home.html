@@ -8,8 +8,13 @@
     <img src="/{{ item.content }}" width="300px" height="400px"><br />
                        <h3 style="color:blue;">{{ item.name }}</h3> <br />
                        <p>$ {{ item.price }} </p>
-                       <form method="POST" action="/add">
-                           <button type="submit">add item to cart</button>
+                       <form method="POST" action="/cart/{{ item._id }}/add">
+
+                         <input type='hidden' value='{{ item._id }}' name='item_id'/>
+                         <input type='hidden' value='{{ item.name }}' name='name'/>
+                         <input type='hidden' value='{{ item.price }}' name='price'/>
+
+                        <button class='btn btn-primary btn-sm' type="submit">Add to Cart</button>
                        </form>
 
 

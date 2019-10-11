@@ -35,9 +35,7 @@ items.insert_many([
     }
 ])
 
-@app.route('/cart')
-def cart():
-    return render_template("cart.html" , title='Cart')
+
 
 @app.route('/')
 def home():
@@ -57,8 +55,8 @@ def item_add():
     title = "add item to cart"
     return render_template('cart.html', title=title, items={})
 
-@app.route('/add', methods=['POST'])
-def add_item():
+@app.route('/cart/<item_id>/adds', methods=['POST'])
+def add_item(item_id):
     '''Submit new item to inventory'''
     item = {
         'name': request.form.get('name'),
@@ -104,9 +102,10 @@ def item_delete(item_id):
     '''Delete item'''
     items.delete_one({'_id': ObjectId(item_id)})
 
+    return redirect(url_for('show_admin'))
 
-@app.route('/cart/<item_id>/', methods=['POST'])
-def add_to_cart():
+@app.route('/cart/<item_id>/add', methods=['POST'])
+def add_to_cart(item_id):
     '''Submit new item to cart'''
     item = {
         'name': request.form.get('name'),
@@ -114,7 +113,7 @@ def add_to_cart():
         'title': request.form.get('title')
     }
 
-    add_item = items.insert_one(item).inserted_id
+    add_item = cart.insert_one(item).inserted_id
     return redirect(url_for('show_cart', add_item=add_item))
 
 @app.route('/cart/<item_id>/delete', methods=['POST'])

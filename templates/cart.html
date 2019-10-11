@@ -3,23 +3,29 @@
 
 
 {% block content %}
-<div>
-    {% if num == 0 %}
-        <h2>Nothing in cart</h2>
-    {% endif %}
 
-    {% for item in items %}
-    <div>
-        <h2>{{ item.name }}</h2>
-        <h3>{{ item.description }}</h3>
-        <img src={{ item.content }}>
-        <p>
-            <form method='POST' action='/items/{{ item._id }}'>
-                <input>
-                <button type='submit'>delete item</button>
-            </form>
-        <p>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+<h1>Continue Checking Out</h1>
+<button type='submit'onclick="window.location.href='/'"">Go Home</button>
+
+<table class="table table-striped">
+    <thead>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Remove</th>
+    </thead>
+    <tbody>
+        {% for item in cart  %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+
+                <td><form method='POST' action='/cart/{{ item._id }}/delete'>
+                    <input type='hidden' name='_method' value='DELETE'>
+                    <button class='btn btn-secondary btn-sm' type='submit'>Delete</button>
+                </form></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
