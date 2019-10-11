@@ -32,6 +32,12 @@ items.insert_many([
     'title' : 'T Shirt',
     'content' : 'static/images/21pilots.jpg',
     'price' : 30
+    },
+    {
+    'name' : 'THE 1975',
+    'title' : 'Unisex: T Shirt',
+    'content' : 'static/images/the1975.jpg',
+    'price' : 30
     }
 ])
 
@@ -50,59 +56,7 @@ def show_cart():
 
     return render_template('cart.html', cart=carts)
 
-@app.route('/items/add')
-def item_add():
-    title = "add item to cart"
-    return render_template('cart.html', title=title, items={})
 
-@app.route('/cart/<item_id>/adds', methods=['POST'])
-def add_item(item_id):
-    '''Submit new item to inventory'''
-    item = {
-        'name': request.form.get('name'),
-        "price": request.form.get('price'),
-        'title': request.form.get('title'),
-        'content': request.form.get('content')
-    }
-
-    item_id = items.insert_one(item).inserted_id
-    return redirect(url_for('show_cart', item_id=item_id))
-
-@app.route('/items/<item_id>')
-def item_show(item_id):
-    '''Show single item'''
-    item = items.find_one({'_id': ObjectId(item_id)})
-    return render_template('item.html', item=item)
-
-@app.route('/items/<item_id>/edit')
-def item_edit(item_id):
-    '''Show edit form for an item'''
-    title = "Edit Item"
-    item = items.find_one({'_id': ObjectId(item_id)})
-    return render_template('item_edit.html', title=title, item=item)
-
-@app.route('/items/<item_id>', methods=['POST'])
-def item_update(item_id):
-    '''Submit an edited item'''
-    updated_item = {
-        'name': request.form.get('name'),
-        'price': request.form.get('price'),
-        'title': request.form.get('title'),
-        'content': request.form.get('content')
-    }
-
-    items.update_one(
-        {'_id': ObjectId(item_id)},
-        {'$set': updated_item})
-
-    return redirect(url_for('item_show', item_id=item_id))
-
-@app.route('/inventory/<item_id>/delete', methods=['POST'])
-def item_delete(item_id):
-    '''Delete item'''
-    items.delete_one({'_id': ObjectId(item_id)})
-
-    return redirect(url_for('show_admin'))
 
 @app.route('/cart/<item_id>/add', methods=['POST'])
 def add_to_cart(item_id):
