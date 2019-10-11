@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
-app = Flask(__name__)
+
+
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/db')
 client = MongoClient(host=f'{host}?retryWrites=false')
@@ -13,7 +14,7 @@ cart = db.cart
 items.drop()
 cart.drop()
 
-
+app = Flask(__name__)
 items.insert_many([
     {
     'name' : 'P!ATD T SHIRT',
