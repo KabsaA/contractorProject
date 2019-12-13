@@ -55,7 +55,7 @@ requests-oauthlib==1.2.0
 six==1.11.0
 sqlparse==0.2.4
 stripe==2.27.0
-urllib3==1.22
+urllib3==1.24.2
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
 wcwidth==0.1.7
