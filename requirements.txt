@@ -37,7 +37,7 @@ packaging==19.1
 peewee==2.10.2
 pep8==1.7.1
 pew==1.1.2
-Pillow==6.0.0
+Pillow==6.2.0
 pipenv==9.0.1
 pluggy==0.13.0
 py==1.8.0
