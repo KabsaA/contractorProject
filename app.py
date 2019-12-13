@@ -16,25 +16,25 @@ app = Flask(__name__)
 items.insert_many([
     {
     'name' : 'P!ATD T SHIRT',
-    'title' : 'Mens T Shirt',
+    'title' : 'stan brendan urie for good grades',
     'content' : 'static/images/patd.jpg',
     'price' : 25
     },
     {
     'name' : 'FALL OUT BOY',
-    'title' : 'Womens T Shirt',
+    'title' : 'Pretty Nice',
     'content' : 'static/images/fob.jpg',
     'price' : 35
     },
     {
     'name' : '21 PILOTS',
-    'title' : 'T Shirt',
+    'title' : 'you have great taste',
     'content' : 'static/images/21pilots.jpg',
     'price' : 30
     },
     {
     'name' : 'THE 1975',
-    'title' : 'Unisex: T Shirt',
+    'title' : 'stream the 1975 for clear skin',
     'content' : 'static/images/the1975.jpg',
     'price' : 30
     }
