@@ -40,7 +40,7 @@ pew==1.1.2
 pillow>=6.2.0
 pipenv==9.0.1
 pluggy==0.13.0
-py==1.8.0
+py==1.10.0
 pycodestyle==2.5.0
 pycparser==2.18
 pyflakes==1.6.0
